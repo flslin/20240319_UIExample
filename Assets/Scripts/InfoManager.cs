@@ -57,7 +57,7 @@ class InfoManager : MonoBehaviour
 
     public void PointPlus()
     {
-        player_info.point += 10;
+        player_info.point += 100;
         var classtojson = JsonUtility.ToJson(player_info);
         SaveData(player_info/*, GetPlayer_info()*/);
     }
