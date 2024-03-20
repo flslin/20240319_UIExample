@@ -14,6 +14,7 @@ public class PotionData : CountableData
 
     public override Items Create()
     {
-        return new Potion(this);
+        //return new Potion(this);
+        return null;
     }
 }

@@ -24,17 +24,7 @@ public class GameManager : MonoBehaviour
 
     public void Play()
     {
-        for (int i = 0; i < num.Length; i++)
-        {
-            int rNum = r.Next(1, 10);
-            num[i] = rNum;
-            int temp = num[i];
-
-        }
-
-        Debug.Log(num[0]);
-        Debug.Log(num[1]);
-        Debug.Log(num[2]);
+        RandomNumber(num);
     }
 
     void RandomNumber(int[] array)
