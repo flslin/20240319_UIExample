@@ -105,7 +105,7 @@ public class LoginManager : MonoBehaviour
                         {
                             if (id == loginIDText.text && pw == loginPWText.text)
                             {
-                                loginCheckText.text = "로그인 성공";
+                                loginCheckText.text = "로그인 성공!";
                             }
                             else
                             {
