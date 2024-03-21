@@ -87,22 +87,23 @@ public class LoginManager : MonoBehaviour
     {
         if (loginIDText.text != string.Empty && loginPWText.text != string.Empty)
         {
-            FirebaseDatabase.DefaultInstance.GetReference("playerInfo").Child("signInfo").GetValueAsync().ContinueWithOnMainThread(task =>
+            FirebaseDatabase.DefaultInstance.GetReference("playerInfo").GetValueAsync().ContinueWithOnMainThread(task =>
             {
-                if(task.IsFaulted)
+                if (task.IsFaulted)
                 {
                     Debug.Log("오류애오");
                 }
                 else if (task.IsCompleted)
                 {
                     DataSnapshot snapshot = task.Result;
-                    id = snapshot.Child("playerInfo").Child("signInfo").Child("id").Value.ToString();
-                    pw = snapshot.Child("playerInfo").Child("signInfo").Child("pw").Value.ToString();
 
-                    if (snapshot.ChildrenCount != 0)
+                    if (snapshot.ChildrenCount > 0)
                     {
-                        for (int i = 0; i < snapshot.ChildrenCount; i++)
-                        {
+                        //for (int i = 0; i < snapshot.ChildrenCount; i++)
+                        //{
+                            id = snapshot.Child(loginIDText.text.ToString()).Child("id").Value.ToString();
+                            pw = snapshot.Child(loginIDText.text.ToString()).Child("pw").Value.ToString();
+                            
                             if (id == loginIDText.text && pw == loginPWText.text)
                             {
                                 loginCheckText.text = "로그인 성공!";
@@ -110,8 +111,9 @@ public class LoginManager : MonoBehaviour
                             else
                             {
                                 loginCheckText.text = "아이디, 비밀번호를 확인해 주세요!";
+                                
                             }
-                        }
+                        //}
                     }
                     else
                     {
@@ -148,8 +150,11 @@ public class LoginManager : MonoBehaviour
 
         if (signinIDText.text != string.Empty && signinPWText.text != string.Empty && signinPWCheckText.text != string.Empty)
         {
-            reference.Child("playerInfo").Child($"signInfo{index}").SetRawJsonValueAsync(player_json);
+            //reference.Child("playerInfo").Child($"signInfo{index}").SetRawJsonValueAsync(player_json);
+            reference.Child("playerInfo").Child(_id).SetRawJsonValueAsync(player_json);
             index++;
+
+            signinCheckText.text = "이게 되네";
         }
 
         else if ((signinIDText.text != string.Empty && signinPWText.text != string.Empty && signinPWCheckText.text == string.Empty) || (signinPWText.text != signinPWCheckText.text))
