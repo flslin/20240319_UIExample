@@ -76,3 +76,6 @@ crashlytics-build.properties
 
 # End of https://www.toptal.com/developers/gitignore/api/unity
 /Assets/Firebase/Plugins/x86_64/FirebaseCppApp-11_8_0.bundle
+/Assets/Firebase
+
+*.bundle
