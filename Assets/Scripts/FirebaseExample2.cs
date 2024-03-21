@@ -14,7 +14,18 @@ public class Student
         sName = name;
         this.email = email;
     }
+
+    public Dictionary<string, object> ToDictionary()
+    {
+        Dictionary<string, object> result = new Dictionary<string, object>();
+        result["s_name"] = sName;
+        result["email"] = email;
+        return result;
+    }
+
+    // 사용 예시
 }
+
 // SetValueAsync() 를 통해 지정한 참조에 데이터를 저장하고 해당 경로의 기존 데이터로 변경하는 작업
 // string, long, double, bool Dictionary<string, Object>, List<Object>
 
@@ -27,6 +38,7 @@ public class FirebaseExample2 : MonoBehaviour
         reference = FirebaseDatabase.DefaultInstance.RootReference;
 
         StudentRegister("20211367", "NAME", "example@gmail.com");
+        StudentUpdate("20211367", "MANE");
     }
     
     /// <summary>
@@ -52,5 +64,19 @@ public class FirebaseExample2 : MonoBehaviour
     private void StudentUpdate(string _sID, string _sName)
     {
         reference.Child("students").Child(_sID).Child("student_name").SetValueAsync(_sName);
+        
+        Debug.Log($"이름이 변경되었습니다.");
+    }
+
+    // 사용 예시
+    void Sample()
+    {
+        Student s = new Student("a", "a@naver.com");
+        var sjson = JsonUtility.ToJson(s);
+        Dictionary<string, object> update = s.ToDictionary();
+
+        var key = reference.Child("students").Push().Key;
+
+        reference.Child("students").Child("20211367").SetRawJsonValueAsync(sjson);
     }
 }
