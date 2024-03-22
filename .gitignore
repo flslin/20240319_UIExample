@@ -1,5 +1,14 @@
-# Created by https://www.toptal.com/developers/gitignore/api/unity
-# Edit at https://www.toptal.com/developers/gitignore?templates=unity
+# Created by https://www.toptal.com/developers/gitignore/api/unity,firebase
+# Edit at https://www.toptal.com/developers/gitignore?templates=unity,firebase
+
+### Firebase ###
+.idea
+**/node_modules/*
+**/.firebaserc
+
+### Firebase Patch ###
+.runtimeconfig.json
+.firebase/
 
 ### Unity ###
 # This .gitignore file should be placed at the root of your Unity project directory
@@ -74,8 +83,4 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
-# End of https://www.toptal.com/developers/gitignore/api/unity
-/Assets/Firebase/Plugins/x86_64/FirebaseCppApp-11_8_0.bundle
-/Assets/Firebase
-
-*.bundle
+# End of https://www.toptal.com/developers/gitignore/api/unity,firebase
